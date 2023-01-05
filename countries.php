@@ -1,21 +1,20 @@
 <?php
-if ($_POST['id']===''){
-    echo'Please enter your department id'. "<br>";
+if ($_POST['conId']===''){
+    echo'Please enter your country id'. "<br>";
     return false;
 }
 
-if ($_POST['name']===''){
-  echo'Please enter your department name'. "<br>";
+if ($_POST['conName']===''){
+  echo'Please enter your country Name'. "<br>";
   return false;
 }
 
-if ($_POST['locationId']===''){
-  echo'Please enter your location id'. "<br>";
+if ($_POST['regionId']===''){
+  echo'Please enter your region id'. "<br>";
   return false;
 }
 
 ?>
-
 
 <?php
 $servername = "localhost";
@@ -24,9 +23,10 @@ $password = "";
 $dbname = "hrms_final";
 
 try {
-  $idValue = $_POST['id'];
-  $nameValue = $_POST['name'];
-  $locationIdValue = $_POST['locationId'];
+
+  $idValue = $_POST['conId'];
+  $conNameValue = $_POST['conName'];
+  $regIdValue = $_POST['regionId'];
 
 
 
@@ -34,16 +34,15 @@ try {
 
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
-  $sql = "INSERT INTO departments (id, name, locations_id) VALUES('$idValue', '$nameValue', '$locationIdValue')";
-
+  $sql = "INSERT INTO countries (id, name, regions_id) VALUES ('$idValue', '$conNameValue', '$regIdValue')";
+  
   $conn->exec($sql);
-
   echo "New record created successfully";
-
+  
 } catch(PDOException $e) {
   echo $sql . "<br>" . $e->getMessage();
 }
 
 $conn = null;
 ?>
+
